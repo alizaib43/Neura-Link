@@ -7,8 +7,7 @@ import * as z from 'zod';
 import { motion } from 'framer-motion';
 import { Mail, MessageSquare, Send, User, CheckCircle2 } from 'lucide-react';
 import GlassCard from '@/components/GlassCard';
-
-import { sendContactEmail } from '@/lib/actions';
+import emailjs from '@emailjs/browser';
  
 const contactSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -24,7 +23,17 @@ export default function Contact() {
 
   const onSubmit = async (data) => {
     try {
-      await sendContactEmail(data);
+      await emailjs.send(
+        'service_37v9qrc',
+        'template_ae52fby',
+        {
+          name: data.name,
+          email: data.email,
+          message: data.message,
+          time: new Date().toLocaleString(),
+        },
+        'KM-Z4Q60TnH2q0r2M'
+      );
       setIsSubmitted(true);
       reset();
       setTimeout(() => setIsSubmitted(false), 5000);
@@ -58,19 +67,11 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-medium text-white">Email Us</h3>
-                <p className="text-sm text-slate-500">support@nebulalink.com</p>
+                <p className="text-sm text-slate-500">ali.maga550@gmail.com</p>
               </div>
             </div>
             
-             <div className="flex items-center space-x-4 text-slate-300">
-              <div className="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
-                <MessageSquare className="w-6 h-6 text-blue-400" />
-              </div>
-              <div>
-                <h3 className="font-medium text-white">Join Community</h3>
-                <p className="text-sm text-slate-500">discord.gg/nebulalink</p>
-              </div>
-            </div>
+             
           </div>
         </motion.div>
 

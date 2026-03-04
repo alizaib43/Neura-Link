@@ -3,6 +3,7 @@
 import fs from "fs/promises";
 import path from "path";
 import { nanoid } from "nanoid";
+import nodemailer from "nodemailer";
 
 const DATA_PATH = path.join(process.cwd(), "data", "links.json");
 
@@ -48,14 +49,29 @@ export async function getOriginalUrl(slug: string) {
 }
 
 export async function sendContactEmail(data: { name: string; email: string; message: string }) {
-  // In a real app, you would use nodemailer, Resend, or a similar service here.
-  // We will simulate the process and log the intent to send to the specified email.
-  console.log(`[Email Service] Simulating email send to: zaib.hmatrix570@gmail.com`);
-  console.log(`[Email Service] From: ${data.name} (${data.email})`);
-  console.log(`[Email Service] Message: ${data.message}`);
-  
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  
-  return { success: true };
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: "ali.maga550@gmail.com",
+    subject: `New Contact Form Submission from ${data.name}`,
+    text: `Name: ${data.name}\nEmail: ${data.email}\nMessage: ${data.message}`,
+    html: `<p><strong>Name:</strong> ${data.name}</p>
+           <p><strong>Email:</strong> ${data.email}</p>
+           <p><strong>Message:</strong><br/>${data.message.replace(/\n/g, "<br/>")}</p>`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true };
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw new Error("Failed to send email.");
+  }
 }
