@@ -8,6 +8,10 @@ import confetti from 'canvas-confetti';
 import {QRCodeSVG} from 'qrcode.react';
 import GlassCard from '@/components/GlassCard';
 
+export function generateStaticParams() {
+  return [];
+}
+
 export default function ShortenResult() {
   const params = useParams();
   const id = params?.id;

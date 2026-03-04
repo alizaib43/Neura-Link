@@ -1,6 +1,10 @@
 import { redirect, notFound } from "next/navigation";
 import { getOriginalUrl } from "@/lib/actions";
 
+export function generateStaticParams() {
+  return [];
+}
+
 export default async function RedirectPage({
   params,
 }: {
