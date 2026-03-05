@@ -10,30 +10,30 @@ export default function AnimatedBackground() {
       {/* Primary Nebula Orbs */}
       <motion.div
         animate={{
-          x: [0, 100, -50, 0],
-          y: [0, -80, 50, 0],
-          scale: [1, 1.3, 0.9, 1],
+          x: [0, 40, -20, 0],
+          y: [0, -30, 20, 0],
         }}
         transition={{
-          duration: 25,
+          duration: 20,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "linear"
         }}
+        style={{ willChange: "transform" }}
         className="absolute top-0 left-1/4 w-[30rem] h-[30rem] bg-purple-600/20 rounded-full blur-[100px]"
       />
       
       <motion.div
         animate={{
-          x: [0, -120, 80, 0],
-          y: [0, 60, -100, 0],
-          scale: [1, 1.2, 1.1, 1],
+          x: [0, -50, 30, 0],
+          y: [0, 20, -40, 0],
         }}
         transition={{
-          duration: 20,
+          duration: 25,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: "linear",
           delay: 2
         }}
+        style={{ willChange: "transform" }}
         className="absolute bottom-0 right-1/4 w-[35rem] h-[35rem] bg-indigo-600/15 rounded-full blur-[120px]"
       />
 
@@ -80,9 +80,6 @@ export default function AnimatedBackground() {
       />
       
       <div className="absolute inset-0 bg-slate-950/20 backdrop-blur-[1px]" />
-      
-      {/* Noise Texture Overlay */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
     </div>
   );
 }
