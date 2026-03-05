@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import GlassCard from '@/components/GlassCard';
 import { Users, Target, Zap, Globe } from 'lucide-react';
 
@@ -73,11 +74,11 @@ export default function About() {
                 <div className={`h-32 ${member.color} opacity-20`} />
                 <div className="p-6 relative">
                   <div className={`w-20 h-20 rounded-full ${member.color} absolute -top-10 left-6 border-4 border-slate-900 flex items-center justify-center text-2xl font-bold text-white`}>
-                    <img src={member.img} 
+                    <Image src={member.img} 
   alt={member.name.charAt(0)}
   width={80}
   height={80}
-  className="rounded-full object-cover"></img>
+  className="rounded-full object-cover" />
                   </div>
                   <div className="mt-8">
                     <h3 className="text-xl font-bold text-white">{member.name}</h3>
