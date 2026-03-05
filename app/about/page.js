@@ -6,9 +6,9 @@ import GlassCard from '@/components/GlassCard';
 import { Users, Target, Zap, Globe } from 'lucide-react';
 
 const team = [
-  { name: 'Antigravity', role: 'AI Assistant', color: 'bg-blue-500', img: '/Neura-Link/OIP.webp' },
-  { name: 'Alizaib', role: 'Developer', color: 'bg-purple-500' ,img: '/Neura-Link/ali.jpg' },
-  { name: 'Nextjs', role: 'Framework', color: 'bg-black', img: '/Neura-Link/nextjs.webp' }
+  { name: 'Antigravity', role: 'AI Assistant', color: 'bg-blue-500', img: '/OIP.webp' },
+  { name: 'Alizaib', role: 'Developer', color: 'bg-purple-500' ,img: '/ali.jpg' },
+  { name: 'Nextjs', role: 'Framework', color: 'bg-black', img: '/nextjs.webp' }
 ];
 
 export default function About() {

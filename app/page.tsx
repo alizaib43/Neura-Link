@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -51,9 +51,18 @@ export default function Home() {
     }
   };
 
-  const fullShortUrl = shortenedSlug
-    ? `https://tinyurl.com/${shortenedSlug}`
-    : "";
+  const [fullShortUrl, setFullShortUrl] = useState("");
+
+  useEffect(() => {
+    if (shortenedSlug) {
+      // Construction of branded link for GitHub Pages subpath
+      const origin = window.location.origin;
+      const brandedUrl = `${origin}/Neura-Link/shorten/default?id=${shortenedSlug}`;
+      setFullShortUrl(brandedUrl);
+    } else {
+      setFullShortUrl("");
+    }
+  }, [shortenedSlug]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(fullShortUrl);

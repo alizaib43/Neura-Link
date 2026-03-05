@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import ShortenResultClient from '@/components/ShortenResultClient';
 
 export const dynamic = 'force-static';
@@ -14,5 +15,9 @@ export default async function Page({
   params: Promise<{ id: string }> 
 }) {
   const { id } = await params;
-  return <ShortenResultClient id={id} />;
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-white">Loading...</div>}>
+      <ShortenResultClient id={id} />
+    </Suspense>
+  );
 }

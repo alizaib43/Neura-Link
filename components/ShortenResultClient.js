@@ -1,14 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Copy, Check, ExternalLink, Share2, QrCode as QrCodeIcon } from 'lucide-react';
 import confetti from 'canvas-confetti'; 
 import {QRCodeSVG} from 'qrcode.react';
 import GlassCard from '@/components/GlassCard';
 
-export default function ShortenResultClient({ id }) {
+export default function ShortenResultClient({ id: propId }) {
   const [copied, setCopied] = useState(false);
+  const searchParams = useSearchParams();
+  
+  // If we are on the placeholder 'default' page, try to get the real id from query params
+  const id = propId === 'default' ? (searchParams.get('id') || propId) : propId;
   
   // Construct the full short URL
   const shortUrl = `https://tinyurl.com/${id}`;
