@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   const fullShortUrl = shortenedSlug
-    ? `${window.location.protocol}//${window.location.host}/${shortenedSlug}`
+    ? `https://tinyurl.com/${shortenedSlug}`
     : "";
 
   const handleCopy = () => {
